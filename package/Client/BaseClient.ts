@@ -1,5 +1,6 @@
 import { WebSocket as WS, RawData } from "ws";
 import { pino as pino, Logger } from "pino"
+import { IncomingGatewayPayload } from "../types/basic";
 
 export class BaseClient {
     public token: string;
@@ -29,7 +30,7 @@ export class BaseClient {
     public login() {
         // We connect to the gateway and create the corresponding constants
         this.api.on("message", (data: RawData) => {
-            const payload = JSON.parse(data.toString());
+            const payload = JSON.parse(data.toString()) as IncomingGatewayPayload;
             const { d, op, t, s} = payload;
             if(s !== null) this.lastSequence = s;
             

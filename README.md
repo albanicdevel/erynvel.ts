@@ -9,7 +9,7 @@ import {
     Client,
     Message,
     Events
-} from "@albanicdevel/erynvell"
+} from "@albanicdevel/erynvel"
 
 const client = new Client({
     token: ""
@@ -25,7 +25,7 @@ const {
     Client,
     Message,
     Events
-} = require("@albanicdevel/erynvell");
+} = require("@albanicdevel/erynvel");
 
 const client = new Client({
     token: ""
