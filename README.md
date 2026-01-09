@@ -2,34 +2,4 @@
   <img src="assets/erynvelicon.png" width="300">
 </p>
 
-U **can** use on `ts`:
-
-```ts
-import {
-    Client,
-    Message,
-    Events
-} from "@albanicdevel/erynvel"
-
-const client = new Client({
-    token: ""
-});
-
-client.login();
-```
-
-And on `js`:
-```js
-
-const {
-    Client,
-    Message,
-    Events
-} = require("@albanicdevel/erynvel");
-
-const client = new Client({
-    token: ""
-});
-
-client.login();
-```
+this lib for discord lol
