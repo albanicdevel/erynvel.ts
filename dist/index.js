@@ -1,2 +1,3 @@
 import { Client } from "./client/client";
-export { Client };
+import { Events } from "./struct/events";
+export { Client, Events };

@@ -1,2 +1,4 @@
 import { Client } from "./client/client";
-export { Client };
+import { Events } from "./struct/events";
+import { Ready } from "./struct/Ready";
+export { Client, Events, Ready };

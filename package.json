@@ -4,6 +4,9 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
+  "repository": {
+    "url": "https://github.com/albanicdevel/erynvel.ts"
+  },
   "exports": {
     ".": {
       "import": "./dist/index.js",
@@ -11,7 +14,8 @@
     }
   },
   "scripts": {
-    "build": "bun build package/index.ts --outdir dist --format esm --splitting && tsc -p tsconfig.json"
+    "build": "bun build package/index.ts --outdir dist --format esm --splitting && tsc -p tsconfig.json",
+    "devRun": "bun build index.ts --outdir dist --target bun"
   },
   "devDependencies": {
     "@types/bun": "latest"

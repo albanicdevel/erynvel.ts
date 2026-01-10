@@ -1,8 +1,10 @@
+import { DispatchMap } from "../struct/dispatchMap";
+import { Emitter } from "../struct/emitter";
 import { OpCode } from "./types/opcode";
 /**
  * opening a gateway from our host to Discord, sending it a payload see https://discord.com/developers/docs/events/gateway#gateway
  */
-export class Gateway {
+export class Gateway extends Emitter {
     token;
     intents;
     ws;
@@ -16,6 +18,7 @@ export class Gateway {
      * @param intents Intents https://discord.com/developers/docs/events/gateway#gateway-intents
      */
     constructor(token, intents) {
+        super();
         this.token = token;
         this.intents = intents;
     }
@@ -45,6 +48,9 @@ export class Gateway {
                 this.send(OpCode.Heartbeat, this.seq); // so as not to catch a reconnection
                 break;
             case OpCode.Dispatch:
+                if (DispatchMap[payload.t]) {
+                    this.emit(DispatchMap[payload.t], payload.d);
+                }
                 if (payload.t === "READY") {
                     this.sessionId = payload.d.session_id;
                     this.reconnectAttemps = 0;

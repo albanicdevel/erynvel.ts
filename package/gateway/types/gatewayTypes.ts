@@ -54,3 +54,5 @@ export type GatewayPayload =
       d: any;
       s: number | null;
     };
+
+export type Snowflake = string;

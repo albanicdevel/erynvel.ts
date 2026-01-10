@@ -44,3 +44,4 @@ export type GatewayPayload = HelloPayload | DispatchPayload | HeartbeatAckPayloa
     d: any;
     s: number | null;
 };
+export type Snowflake = string;

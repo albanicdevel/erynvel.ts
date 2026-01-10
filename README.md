@@ -6,9 +6,16 @@
 
 ```ts
 import {
-  Client
+    Client,
+    Events,
+    Ready
 } from "erynvel";
 
-const client = new Client("token", "intents");
+const client = new Client("", 513);
+
+client.gateway.on(Events.ready, (d: Ready) => {
+    console.log(`session_id: ${d.session_id}`);
+});
+
 client.login();
 ```

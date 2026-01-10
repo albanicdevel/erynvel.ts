@@ -1,10 +1,12 @@
+import { DispatchMap } from "../struct/dispatchMap";
+import { Emitter } from "../struct/emitter";
 import { GatewayPayload, HelloPayload } from "./types/gatewayTypes";
 import { OpCode } from "./types/opcode";
 
 /**
  * opening a gateway from our host to Discord, sending it a payload see https://discord.com/developers/docs/events/gateway#gateway
  */
-export class Gateway {
+export class Gateway extends Emitter {
     private ws!: WebSocket;
     private seq: number | null = null;
     private timer: ReturnType<typeof setInterval> | null = null;
@@ -15,7 +17,9 @@ export class Gateway {
      * @param token Authorization token
      * @param intents Intents https://discord.com/developers/docs/events/gateway#gateway-intents
      */
-    constructor(private token: string, private intents: number) {}
+    constructor(private token: string, private intents: number) {
+        super();
+    }
 
     /**
      * attempting to establish a connection to the gateway
@@ -43,6 +47,10 @@ export class Gateway {
             this.send(OpCode.Heartbeat, this.seq); // so as not to catch a reconnection
             break;
         case OpCode.Dispatch:
+            if(DispatchMap[payload.t]) {
+                this.emit(DispatchMap[payload.t], payload.d);
+            }
+            
             if(payload.t === "READY") {
                 this.sessionId = payload.d.session_id;
                 this.reconnectAttemps = 0;

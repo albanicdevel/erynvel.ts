@@ -1,7 +1,8 @@
+import { Emitter } from "../struct/emitter";
 /**
  * opening a gateway from our host to Discord, sending it a payload see https://discord.com/developers/docs/events/gateway#gateway
  */
-export declare class Gateway {
+export declare class Gateway extends Emitter {
     private token;
     private intents;
     private ws;
