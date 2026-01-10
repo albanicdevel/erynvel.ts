@@ -1,11 +1,23 @@
 {
   "name": "erynvel",
   "module": "/package/index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts" 
+    }
+  },
+  "scripts": {
+    "build": "bun build package/index.ts --outdir dist --format esm --splitting && tsc -p tsconfig.json"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5"
-  }
+  },
+  "files": ["dist"]
 }
