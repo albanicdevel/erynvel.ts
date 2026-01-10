@@ -7,7 +7,7 @@
   "exports": {
     ".": {
       "import": "./dist/index.js",
-      "types": "./dist/index.d.ts" 
+      "types": "./dist/index.d.ts"
     }
   },
   "scripts": {
@@ -19,5 +19,8 @@
   "peerDependencies": {
     "typescript": "^5"
   },
-  "files": ["dist"]
+  "files": [
+    "dist"
+  ],
+  "version": "0.0.1"
 }
